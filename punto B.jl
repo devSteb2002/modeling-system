@@ -8,7 +8,7 @@ l = 0.5      # pendulum length
 g = 9.81
 I = (1/3)*M*l^2   # inertia of the pendulum
 
-function cart_pendulum!(du,u,p,t)
+function car_pendulum!(du,u,p,t)
 
     x = u[1]
     xdot = u[2]
@@ -44,21 +44,21 @@ tspan = (0.0,10.0)
 
 # Initial conditions
 u0_1 = [0.0,0.0,0.2,0.0]
-u0_2 = [0.0,0.0,0.5,0.0]
-u0_3 = [0.0,0.0,1.0,0.0]
+u0_2 = [0.0,0.02,0.3,0.0]
+u0_3 = [0.0,0.0,0.1,0.0]
 
 # Define problems
-prob1 = ODEProblem(cart_pendulum!,u0_1,tspan)
-prob2 = ODEProblem(cart_pendulum!,u0_2,tspan)
-prob3 = ODEProblem(cart_pendulum!,u0_3,tspan)
+prob1 = ODEProblem(car_pendulum!,u0_1,tspan)
+prob2 = ODEProblem(car_pendulum!,u0_2,tspan)
+prob3 = ODEProblem(car_pendulum!,u0_3,tspan)
 
 # Solve
 sol1 = solve(prob1)
 sol2 = solve(prob2)
 sol3 = solve(prob3)
 
-# Plot cart position
-plot(sol1.t,sol1[1,:],label="IC1",xlabel="t",ylabel="x",title="Cart position")
+# Plot car position
+plot(sol1.t,sol1[1,:],label="IC1",xlabel="t",ylabel="x",title="Car position")
 plot!(sol2.t,sol2[1,:],label="IC2")
 plot!(sol3.t,sol3[1,:],label="IC3")
 
